@@ -18,7 +18,19 @@ This system handles product management, cart operations, checkout flow, shipping
   - Prints checkout and shipping details to console
 - Sends shippable products to a `ShippingService`.
 
----
+## Design Patterns
+
+This project uses the Strategy Pattern to handle different behaviors for product policies:
+
+- Expiration Policy:
+    - ExpirationPolicy (interface)
+      - Expirable (with expirationDate)
+      - NoExpiration
+
+- Shipping Policy:
+  - ShippingPolicy (interface)
+    - Shippable (with weight)
+    - NoShipping
 
 ## Class Diagram
 
@@ -139,7 +151,45 @@ OrderUtils.printOrder(order);
 ```
 
 ## Console Output
+
 ![image](https://github.com/user-attachments/assets/a12ba350-1cd9-4edb-a033-17740e0f774f)
 
+## Insufficient Balance
 
+```java
+Customer poorCustomer = new Customer("Ali", BigDecimal.valueOf(100));
+Cart cart = new Cart();
+cart.add(new Product("TV", 300, 2, new NoExpiration(), new Shippable(700)), 1);
+
+orderService.checkout(poorCustomer, cart);
+```
+
+![image](https://github.com/user-attachments/assets/1d952165-4544-4a72-aee2-287631ea842f)
+
+## Product Expired
+
+```java
+Product oldCheese = new Product("Old Cheese", 100, 5,
+  new Expirable(LocalDate.of(2023, 1, 1)),
+  new Shippable(200));
+
+cart.add(oldCheese, 1);
+checkoutDemo(customer, cart);
+```
+
+![image](https://github.com/user-attachments/assets/1ad6d04f-5c7f-48fa-8ac8-6d5656c9d0c8)
+
+
+## Out of Stock
+
+```java
+Product limitedItem = new Product("Rare Book", 100, 0,
+  new NoExpiration(),
+  new NoShipping());
+
+cart.add(limitedItem, 2);
+checkoutDemo(customer, cart);
+```
+
+![image](https://github.com/user-attachments/assets/1474d757-b8ca-4237-951c-b9c497bbd8e8)
 
