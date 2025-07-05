@@ -8,15 +8,15 @@ import java.util.stream.Collectors;
 
 public class OrderMapper {
 
-    public static OrderItem toOrderItem(CartItem cartItem) {
+    public OrderItem toOrderItem(CartItem cartItem) {
         return new OrderItem()
                 .setProduct(cartItem.getProduct())
                 .setQuantity(cartItem.getQuantity());
     }
 
-    public static List<OrderItem> toOrderItems(List<CartItem> cartItems) {
+    public List<OrderItem> toOrderItems(List<CartItem> cartItems) {
         return cartItems.stream()
-                .map(OrderMapper::toOrderItem)
+                .map(this::toOrderItem)
                 .collect(Collectors.toList());
     }
 }
