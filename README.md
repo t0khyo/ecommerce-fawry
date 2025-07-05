@@ -32,6 +32,11 @@ This project uses the Strategy Pattern to handle different behaviors for product
     - Shippable (with weight)
     - NoShipping
 
+**Why Strategy?**
+- Eliminates conditionals (if (isExpirable) ...)
+- Makes it easy to add new policies (e.g. DelayedShipping)
+- Keeps product class clean and open to extension
+
 ## Class Diagram
 
 ```mermaid
