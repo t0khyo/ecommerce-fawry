@@ -108,3 +108,38 @@ classDiagram
     }
 
 ```
+
+## Example Usage
+
+```java
+Product cheese = new Product("Cheese", 100, 5,
+    new Expirable(LocalDate.of(2025, 9, 1)),
+    new Shippable(200));
+
+Product biscuits = new Product("Biscuits", 150, 3,
+    new Expirable(LocalDate.of(2025, 10, 1)),
+    new Shippable(700));
+
+Product scratchCard = new Product("Scratch Card", 50, 10,
+    new NoExpiration(),
+    new NoShipping());
+
+Customer customer = new Customer("Abdelrahman", BigDecimal.valueOf(1000));
+
+Cart cart = new Cart();
+cart.add(cheese, 2);
+cart.add(biscuits, 1);
+cart.add(scratchCard, 1);
+
+OrderService orderService = new OrderServiceImpl(new ShippingServiceImpl(), new CartItemToOrderItemMapper());
+
+Order order = orderService.checkout(customer, cart);
+
+OrderUtils.printOrder(order);
+```
+
+## Console Output
+![image](https://github.com/user-attachments/assets/a12ba350-1cd9-4edb-a033-17740e0f774f)
+
+
+
