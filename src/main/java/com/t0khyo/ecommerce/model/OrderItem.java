@@ -30,7 +30,7 @@ public class OrderItem {
 
     public OrderItem setQuantity(int quantity) {
         if (quantity < 0) {
-            throw new IllegalArgumentException(ErrorMessage.ORDER_ITEM_QUANTITY_MUST_BE_POSITIVE.get());
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ITEM_QUANTITY_MUST_BE_POSITIVE.getMessage());
         }
 
         this.quantity = quantity;

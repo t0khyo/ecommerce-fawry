@@ -2,6 +2,7 @@ package com.t0khyo.ecommerce.util;
 
 import com.t0khyo.ecommerce.exception.ErrorMessage;
 import com.t0khyo.ecommerce.exception.InsufficientBalanceException;
+import com.t0khyo.ecommerce.exception.ProductExpiredException;
 import com.t0khyo.ecommerce.exception.ProductOutOFStockException;
 import com.t0khyo.ecommerce.model.*;
 
@@ -55,7 +56,7 @@ public class OrderUtils {
             Product product = item.getProduct();
 
             if (product.isExpired()) {
-                throw new RuntimeException(ErrorMessage.PRODUCT_EXPIRED.get());
+                throw new ProductExpiredException(product.getName());
             }
 
             if (item.getQuantity() > product.getQuantity()) {

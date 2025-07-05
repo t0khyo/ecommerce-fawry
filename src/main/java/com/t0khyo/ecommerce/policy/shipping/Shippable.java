@@ -7,7 +7,7 @@ public class Shippable implements ShippingPolicy {
     private double weight;
 
     public Shippable(double weight) {
-        if (weight <= 0) throw new IllegalArgumentException(ErrorMessage.WEIGHT_MUST_BE_POSITIVE.get());
+        if (weight <= 0) throw new IllegalArgumentException(ErrorMessage.WEIGHT_MUST_BE_POSITIVE.getMessage());
         this.weight = weight;
     }
 

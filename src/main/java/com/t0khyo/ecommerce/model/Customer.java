@@ -21,7 +21,7 @@ public class Customer {
     // Constructor, Setters & Getters
     public Customer(String name, BigDecimal balance) {
         if (balance.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException(ErrorMessage.BALANCE_MUST_BE_POSITIVE.get());
+            throw new IllegalArgumentException(ErrorMessage.BALANCE_MUST_BE_POSITIVE.getMessage());
         }
 
         this.name = name;

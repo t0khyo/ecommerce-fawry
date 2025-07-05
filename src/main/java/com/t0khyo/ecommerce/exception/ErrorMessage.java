@@ -1,9 +1,11 @@
 package com.t0khyo.ecommerce.exception;
 
+import java.text.MessageFormat;
+
 public enum ErrorMessage {
     CART_EMPTY("Cart is empty."),
     INSUFFICIENT_BALANCE("Customer's balance is insufficient."),
-    PRODUCT_EXPIRED("Product is expired."),
+    PRODUCT_EXPIRED("Product: \"{0}\" is expired."),
     PRODUCT_OUT_OF_STOCK("Product is out of stock."),
     INVALID_QUANTITY("Requested quantity exceeds available stock."),
     INVALID_WEIGHT("Product does not provide weight."),
@@ -17,7 +19,7 @@ public enum ErrorMessage {
         this.message = message;
     }
 
-    public String get() {
-        return message;
+    public String getMessage(Object... params) {
+        return MessageFormat.format(message, params);
     }
 }
